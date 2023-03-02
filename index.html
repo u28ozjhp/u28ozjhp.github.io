@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ja" data-bs-theme="light">
+<head>
+    <title>AV計算機</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+<body>
+
+    <nav class="navbar bg-body-tertiary">
+        <div class="container-fluid justify-content-end">
+            <div class="form-check form-switch p-1">
+                <input class="form-check-input" type="checkbox" role="switch" id="darkMode">
+                <label class="form-check-label" for="darkMode">
+                    <i class="bi bi-moon"></i>
+                </label>            
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4" style="max-width: 380px">
+
+        <form name="formcalc">
+
+            <div class="row mb-3 border-bottom">
+                <div class="col-7 mb-3">
+                    <div class="form-floating">
+                        <input type="number" class="form-control" name="target_av" id="target_av" placeholder="目標とするAV">
+                        <label for="target_av">目標AV(%)</label>
+                    </div>
+                </div>
+                <div class="col-5 align-self-center mb-3">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="hande">
+                        <label class="form-check-label" for="hande">ハンデ付</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <label class="form-label">売上表からそのまま入力</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="number" class="form-control" name="kadou" id="kadou" placeholder="これまでの稼働時間合計" disabled>
+                <label for="kadou">稼働時間(M/研除)</label>
+            </div>
+
+            <div class="row mb-4">
+                <div class="col-6">
+                    <div class="form-floating">
+                        <input type="number" class="form-control" name="quota_total" id="quota_total" placeholder="これまでのノルマ合計">
+                        <label for="quota_total">基本P</label>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-floating">
+                        <input type="number" class="form-control" name="uriage" id="uriage" placeholder="これまでの売上合計">
+                        <label for="uriage">売上</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <label class="form-label">ノルマ表から合計して入力</label>
+            </div>
+            <div  class="form-floating mb-3">
+                <input type="number" class="form-control" name="kadou_left" id="kadou_left" placeholder="今月残りの稼働時間合計" disabled>
+                <label for="kadou_left">今月残りの稼働時間</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="number" class="form-control" name="quota_left" id="quota_left" placeholder="今月残りのノルマ合計">
+                <label for="quota_left">今月残りのノルマ</label>
+            </div>
+            <div class="border-top">
+                <div class="form-floating mt-3">
+                    <input type="text" class="form-control" name="result" id="result" placeholder="作る必要のある数字" readonly>
+                    <label for="result">作る必要のある数字</label>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+
+            function calc() {
+                const target_av = parseInt(document.formcalc.target_av.value)
+                const kadou = parseInt(document.formcalc.kadou.value)
+                const quota_total = parseFloat(document.formcalc.quota_total.value)
+                const uriage = parseFloat(document.formcalc.uriage.value)
+                const kadou_left = parseInt(document.formcalc.kadou_left.value)
+                const quota_left = parseFloat(document.formcalc.quota_left.value)
+                const cb = document.querySelector('#hande')
+                let result = 0
+                
+                if (cb.checked) {
+                    if (target_av && kadou && quota_total && uriage && kadou_left && quota_left) {
+                        result = (target_av * 0.01 - (kadou + kadou_left) * 0.001) * (quota_total + quota_left) - uriage
+                    } else {
+                        result = ""
+                    }
+                } else {
+                    if (target_av && quota_total && uriage && quota_left) {
+                        result = target_av * 0.01 * (quota_total + quota_left) - uriage
+                    } else {
+                        result = ""
+                    }
+                }
+                if (result < 0 || result === 0) {
+                    document.formcalc.result.value = "目標達成済"
+                } else if (result != "") {
+                    document.formcalc.result.value = result.toFixed(3)
+                } else {
+                    document.formcalc.result.value = ""
+                }
+                
+            }
+            
+            document.querySelector('form').onkeyup = calc
+
+            document.querySelector('#hande').addEventListener('change', function () {
+                calc()
+                if (this.checked) {
+                    document.querySelector('#kadou').disabled = false
+                    document.querySelector('#kadou_left').disabled = false
+                } else {
+                    document.querySelector('#kadou').disabled = true
+                    document.querySelector('#kadou_left').disabled = true
+                }
+            })
+
+            document.querySelector('#darkMode').addEventListener('change', function () {
+                if (this.checked) {
+                    document.querySelector('html').setAttribute('data-bs-theme', 'dark')
+                } else {
+                    document.querySelector('html').setAttribute('data-bs-theme', 'light')
+                }
+            })
+
+
+        })
+    </script>
+</body>
+</html>
