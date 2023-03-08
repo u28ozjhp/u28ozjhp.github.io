@@ -5,24 +5,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+<style>
+    #form-middle {
+        display: block;
+        position: relative;
+    }
+
+    #form-middle::after {
+        content: "";
+        background-image: url(https://upload.wikimedia.org/wikipedia/commons/3/37/Imperial_Seal_of_Japan.svg);
+        opacity: 0.2;
+        z-index: -1;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        position: absolute;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-origin: content-box;
+    }
+
+    .form {
+        opacity: 100%;
+    }
+</style>
 <body>
+    
     <nav class="navbar bg-body-tertiary">
         <div class="container-fluid justify-content-end">
             <div class="form-check form-switch p-1">
                 <input class="form-check-input" type="checkbox" role="switch" id="darkMode">
                 <label class="form-check-label" for="darkMode">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-moon" viewBox="0 0 16 16">
-                      <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278zM4.858 1.311A7.269 7.269 0 0 0 1.025 7.71c0 4.02 3.279 7.276 7.319 7.276a7.316 7.316 0 0 0 5.205-2.162c-.337.042-.68.063-1.029.063-4.61 0-8.343-3.714-8.343-8.29 0-1.167.242-2.278.681-3.286z"/>
+                        <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278zM4.858 1.311A7.269 7.269 0 0 0 1.025 7.71c0 4.02 3.279 7.276 7.319 7.276a7.316 7.316 0 0 0 5.205-2.162c-.337.042-.68.063-1.029.063-4.61 0-8.343-3.714-8.343-8.29 0-1.167.242-2.278.681-3.286z"/>
                     </svg>
                 </label>            
             </div>
         </div>
     </nav>
 
-    <div class="container mt-4" style="max-width: 380px">
+    <div id="main" class="container mt-4" style="max-width: 380px;">
 
-        <form name="formcalc">
+        <form name="formcalc" class="form">
 
             <div class="row mb-3 border-bottom">
                 <div class="col-7 mb-3">
@@ -39,39 +67,41 @@
                 </div>
             </div>
 
-            <div class="text-center">
-                <label class="form-label">売上表からそのまま入力</label>
-            </div>
-            <div class="form-floating mb-3">
-                <input type="number" class="form-control" name="kadou" id="kadou" placeholder="これまでの稼働時間合計" disabled>
-                <label for="kadou">稼働時間(M/研除)</label>
-            </div>
+            <div id="form-middle">
+                <div class="text-center">
+                    <label class="form-label">売上表からそのまま入力</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="number" class="form-control" name="kadou" id="kadou" placeholder="これまでの稼働時間合計" disabled>
+                    <label for="kadou">稼働時間(M/研除)</label>
+                </div>
 
-            <div class="row mb-4">
-                <div class="col-6">
-                    <div class="form-floating">
-                        <input type="number" class="form-control" name="quota_total" id="quota_total" placeholder="これまでのノルマ合計">
-                        <label for="quota_total">基本P</label>
+                <div class="row mb-4">
+                    <div class="col-6">
+                        <div class="form-floating">
+                            <input type="number" class="form-control" name="noruma_total" id="noruma_total" placeholder="これまでのノルマ合計">
+                            <label for="noruma_total">基本P</label>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-floating">
+                            <input type="number" class="form-control" name="uriage" id="uriage" placeholder="これまでの売上合計">
+                            <label for="uriage">売上</label>
+                        </div>
                     </div>
                 </div>
-                <div class="col-6">
-                    <div class="form-floating">
-                        <input type="number" class="form-control" name="uriage" id="uriage" placeholder="これまでの売上合計">
-                        <label for="uriage">売上</label>
-                    </div>
+                
+                <div class="text-center">
+                    <label class="form-label"><span>ノルマ表から合計して入力</span></label>
                 </div>
-            </div>
-            
-            <div class="text-center">
-                <label class="form-label">ノルマ表から合計して入力</label>
-            </div>
-            <div  class="form-floating mb-3">
-                <input type="number" class="form-control" name="kadou_left" id="kadou_left" placeholder="今月残りの稼働時間合計" disabled>
-                <label for="kadou_left">今月残りの稼働時間</label>
-            </div>
-            <div class="form-floating mb-3">
-                <input type="number" class="form-control" name="quota_left" id="quota_left" placeholder="今月残りのノルマ合計">
-                <label for="quota_left">今月残りのノルマ</label>
+                <div  class="form-floating mb-3">
+                    <input type="number" class="form-control" name="kadou_remaining" id="kadou_remaining" placeholder="今月残りの稼働時間合計" disabled>
+                    <label for="kadou_remaining">今月残りの稼働時間</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="number" class="form-control" name="noruma_remaining" id="noruma_remaining" placeholder="今月残りのノルマ合計">
+                    <label for="noruma_remaining">今月残りのノルマ</label>
+                </div>
             </div>
             <div class="border-top">
                 <div class="form-floating mt-3">
@@ -79,65 +109,83 @@
                     <label for="result">作る必要のある数字</label>
                 </div>
             </div>
+            
         </form>
     </div>
+    <div class="modal fade" id="banzaiModal" data-bs-backdrop="static" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-body text-center">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/0/06/War_flag_of_the_Imperial_Japanese_Army.svg" class="img-fluid mb-3">
+                <button id="banzai" type="button" class="btn btn-primary" data-bs-dismiss="modal">日本万歳！</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        $(document).ready(function(){
+            $("#banzaiModal").modal('show');
+
+            $('#banzai').click(function(){
+                const kimigayo = new Audio('https://www.mod.go.jp/gsdf/fan/sound/download/kimigayo.mp3')
+                kimigayo.loop = true
+                kimigayo.play()
+            })
+
+            $('form').keyup(calc)
+
+            $('#hande').change(function () {
+                calc()
+                if (this.checked) {
+                    $('#kadou').prop("disabled", false)
+                    $('#kadou_remaining').prop("disabled", false)
+                } else {
+                    $('#kadou').prop("disabled", true)
+                    $('#kadou_remaining').prop("disabled", true)
+                }
+            })
+
+            $('#darkMode').change(function () {
+                if (this.checked) {
+                    $('html').attr('data-bs-theme', 'dark')
+                } else {
+                    $('html').attr('data-bs-theme', 'light')
+                }
+            })
 
             function calc() {
-                const target_av = parseInt(document.formcalc.target_av.value)
-                const kadou = parseInt(document.formcalc.kadou.value)
-                const quota_total = parseFloat(document.formcalc.quota_total.value)
-                const uriage = parseFloat(document.formcalc.uriage.value)
-                const kadou_left = parseInt(document.formcalc.kadou_left.value)
-                const quota_left = parseFloat(document.formcalc.quota_left.value)
-                const cb = document.querySelector('#hande')
+                const target_av = parseInt($("#target_av").val())
+                const kadou = parseInt($("#kadou").val())
+                const noruma_total = parseFloat($("#noruma_total").val())
+                const uriage = parseFloat($("#uriage").val())
+                const kadou_remaining = parseInt($("#kadou_remaining").val())
+                const noruma_remaining = parseFloat($("#noruma_remaining").val())
+                const cb = $('#hande')
                 let result = 0
                 
-                if (cb.checked) {
-                    if (target_av && kadou && quota_total && uriage && kadou_left && quota_left) {
-                        result = (target_av * 0.01 - (kadou + kadou_left) * 0.001) * (quota_total + quota_left) - uriage
+                if (cb.is(':checked')) {
+                    if (target_av && kadou && noruma_total && uriage && kadou_remaining && noruma_remaining) {
+                        result = (target_av * 0.01 - (kadou + kadou_remaining) * 0.001) * (noruma_total + noruma_remaining) - uriage
                     } else {
                         result = ""
                     }
                 } else {
-                    if (target_av && quota_total && uriage && quota_left) {
-                        result = target_av * 0.01 * (quota_total + quota_left) - uriage
+                    if (target_av && noruma_total && uriage && noruma_remaining) {
+                        result = target_av * 0.01 * (noruma_total + noruma_remaining) - uriage
                     } else {
                         result = ""
                     }
                 }
                 if (result < 0 || result === 0) {
-                    document.formcalc.result.value = "目標達成済"
+                    $('#result').val("目標達成済") 
                 } else if (result != "") {
-                    document.formcalc.result.value = result.toFixed(3)
+                    $('#result').val(result.toFixed(3))
                 } else {
-                    document.formcalc.result.value = ""
+                    $('#result').val("")
                 }
                 
             }
-            
-            document.querySelector('form').onkeyup = calc
-
-            document.querySelector('#hande').addEventListener('change', function () {
-                calc()
-                if (this.checked) {
-                    document.querySelector('#kadou').disabled = false
-                    document.querySelector('#kadou_left').disabled = false
-                } else {
-                    document.querySelector('#kadou').disabled = true
-                    document.querySelector('#kadou_left').disabled = true
-                }
-            })
-
-            document.querySelector('#darkMode').addEventListener('change', function () {
-                if (this.checked) {
-                    document.querySelector('html').setAttribute('data-bs-theme', 'dark')
-                } else {
-                    document.querySelector('html').setAttribute('data-bs-theme', 'light')
-                }
-            })
-
         })
     </script>
 </body>
