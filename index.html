@@ -7,36 +7,11 @@
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-<style>
-    #form-middle {
-        display: block;
-        position: relative;
-    }
-
-    #form-middle::after {
-        content: "";
-        background-image: url(https://upload.wikimedia.org/wikipedia/commons/3/37/Imperial_Seal_of_Japan.svg);
-        opacity: 0.2;
-        z-index: -1;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        position: absolute;
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center;
-        background-origin: content-box;
-    }
-
-    .form {
-        opacity: 100%;
-    }
-</style>
 <body>
     
     <nav class="navbar bg-body-tertiary">
-        <div class="container-fluid justify-content-end">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="https://ja.m.wikipedia.org/wiki/%E6%9D%B1%E6%A2%9D%E8%8B%B1%E6%A9%9F%E3%81%AE%E9%81%BA%E8%A8%80#%E9%80%AE%E6%8D%95%E5%89%8D%E3%81%AB%E6%9B%B8%E3%81%8B%E3%82%8C%E3%81%9F%E3%81%A8%E3%81%95%E3%82%8C%E3%82%8B%E3%82%82%E3%81%AE" style="padding-top: 0; padding-bottom: 0; padding-left: 5px;"><img src="https://upload.wikimedia.org/wikipedia/commons/3/37/Imperial_Seal_of_Japan.svg" height="32px"></a>
             <div class="form-check form-switch p-1">
                 <input class="form-check-input" type="checkbox" role="switch" id="darkMode">
                 <label class="form-check-label" for="darkMode">
@@ -112,25 +87,16 @@
             
         </form>
     </div>
-    <div class="modal fade" id="banzaiModal" data-bs-backdrop="static" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-            <div class="modal-body text-center">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/0/06/War_flag_of_the_Imperial_Japanese_Army.svg" class="img-fluid mb-3">
-                <button id="banzai" type="button" class="btn btn-primary" data-bs-dismiss="modal">日本万歳！</button>
-            </div>
-          </div>
-        </div>
-      </div>
       
     <script>
-        $(document).ready(function(){
-            $("#banzaiModal").modal('show');
+        const kimigayo = new Audio('https://www.mod.go.jp/gsdf/fan/sound/download/kimigayo.mp3')
+        kimigayo.loop = true
 
-            $('#banzai').click(function(){
-                const kimigayo = new Audio('https://www.mod.go.jp/gsdf/fan/sound/download/kimigayo.mp3')
-                kimigayo.loop = true
-                kimigayo.play()
+        $(document).ready(function(){
+            $("body").bind("touchstart touchmove scroll mousedown DOMMouseScroll mousewheel keyup", function(){
+                if (kimigayo.paused) {
+                    kimigayo.play()
+                }
             })
 
             $('form').keyup(calc)
