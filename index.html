@@ -4,14 +4,15 @@
     <title>AV計算機</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link href="/assets/bootstrap.min.css" rel="stylesheet">
+    <script defer src="/assets/bootstrap.bundle.min.js"></script>
+    <script src="/assets/jquery-3.6.3.min.js"></script>
+    <script defer src="/assets/scripts.js"></script>
 <body>
-    
     <nav class="navbar bg-body-tertiary">
         <div class="container-fluid">
-            <a class="navbar-brand" href="https://ja.m.wikipedia.org/wiki/%E6%9D%B1%E6%A2%9D%E8%8B%B1%E6%A9%9F%E3%81%AE%E9%81%BA%E8%A8%80#%E9%80%AE%E6%8D%95%E5%89%8D%E3%81%AB%E6%9B%B8%E3%81%8B%E3%82%8C%E3%81%9F%E3%81%A8%E3%81%95%E3%82%8C%E3%82%8B%E3%82%82%E3%81%AE" style="padding-top: 0; padding-bottom: 0; padding-left: 5px;"><img src="https://upload.wikimedia.org/wikipedia/commons/3/37/Imperial_Seal_of_Japan.svg" height="32px"></a>
+            <a class="navbar-brand" href="https://ja.m.wikipedia.org/wiki/%E6%9D%B1%E6%A2%9D%E8%8B%B1%E6%A9%9F%E3%81%AE%E9%81%BA%E8%A8%80#%E9%80%AE%E6%8D%95%E5%89%8D%E3%81%AB%E6%9B%B8%E3%81%8B%E3%82%8C%E3%81%9F%E3%81%A8%E3%81%95%E3%82%8C%E3%82%8B%E3%82%82%E3%81%AE" style="padding-top: 0; padding-bottom: 0; padding-left: 5px;">
+                <img src="/assets/logo.svg" height="32px"></a>
             <div class="form-check form-switch p-1">
                 <input class="form-check-input" type="checkbox" role="switch" id="darkMode">
                 <label class="form-check-label" for="darkMode">
@@ -24,9 +25,7 @@
     </nav>
 
     <div id="main" class="container mt-4" style="max-width: 380px;">
-
         <form name="formcalc" class="form">
-
             <div class="row mb-3 border-bottom">
                 <div class="col-7 mb-3">
                     <div class="form-floating">
@@ -42,117 +41,48 @@
                 </div>
             </div>
 
-            <div id="form-middle">
-                <div class="text-center">
-                    <label class="form-label">売上表からそのまま入力</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <input type="number" class="form-control" name="kadou" id="kadou" placeholder="これまでの稼働時間合計" disabled>
-                    <label for="kadou">稼働時間(M/研除)</label>
-                </div>
+            <div class="text-center">
+                <label class="form-label">売上表からそのまま入力</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="number" class="form-control" name="kadou" id="kadou" placeholder="これまでの稼働時間合計" disabled>
+                <label for="kadou">稼働時間(M/研除)</label>
+            </div>
 
-                <div class="row mb-4">
-                    <div class="col-6">
-                        <div class="form-floating">
-                            <input type="number" class="form-control" name="noruma_total" id="noruma_total" placeholder="これまでのノルマ合計">
-                            <label for="noruma_total">基本P</label>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="form-floating">
-                            <input type="number" class="form-control" name="uriage" id="uriage" placeholder="これまでの売上合計">
-                            <label for="uriage">売上</label>
-                        </div>
+            <div class="row mb-4">
+                <div class="col-6">
+                    <div class="form-floating">
+                        <input type="number" class="form-control" name="noruma_total" id="noruma_total" placeholder="これまでのノルマ合計">
+                        <label for="noruma_total">基本P</label>
                     </div>
                 </div>
-                
-                <div class="text-center">
-                    <label class="form-label"><span>ノルマ表から合計して入力</span></label>
-                </div>
-                <div  class="form-floating mb-3">
-                    <input type="number" class="form-control" name="kadou_remaining" id="kadou_remaining" placeholder="今月残りの稼働時間合計" disabled>
-                    <label for="kadou_remaining">今月残りの稼働時間</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <input type="number" class="form-control" name="noruma_remaining" id="noruma_remaining" placeholder="今月残りのノルマ合計">
-                    <label for="noruma_remaining">今月残りのノルマ</label>
+                <div class="col-6">
+                    <div class="form-floating">
+                        <input type="number" class="form-control" name="uriage" id="uriage" placeholder="これまでの売上合計">
+                        <label for="uriage">売上</label>
+                    </div>
                 </div>
             </div>
+            
+            <div class="text-center">
+                <label class="form-label"><span>ノルマ表から合計して入力</span></label>
+            </div>
+            <div  class="form-floating mb-3">
+                <input type="number" class="form-control" name="kadou_remaining" id="kadou_remaining" placeholder="今月残りの稼働時間合計" disabled>
+                <label for="kadou_remaining">今月残りの稼働時間</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="number" class="form-control" name="noruma_remaining" id="noruma_remaining" placeholder="今月残りのノルマ合計">
+                <label for="noruma_remaining">今月残りのノルマ</label>
+            </div>
+
             <div class="border-top">
                 <div class="form-floating mt-3">
                     <input type="text" class="form-control" name="result" id="result" placeholder="作る必要のある数字" readonly>
                     <label for="result">作る必要のある数字</label>
                 </div>
             </div>
-            
         </form>
     </div>
-      
-    <script>
-        const kimigayo = new Audio('https://www.mod.go.jp/gsdf/fan/sound/download/kimigayo.mp3')
-        kimigayo.loop = true
-
-        $(document).ready(function(){
-            $("body").bind("touchstart touchmove scroll mousedown DOMMouseScroll mousewheel keyup", function(){
-                if (kimigayo.paused) {
-                    kimigayo.play()
-                }
-            })
-
-            $('form').keyup(calc)
-
-            $('#hande').change(function () {
-                calc()
-                if (this.checked) {
-                    $('#kadou').prop("disabled", false)
-                    $('#kadou_remaining').prop("disabled", false)
-                } else {
-                    $('#kadou').prop("disabled", true)
-                    $('#kadou_remaining').prop("disabled", true)
-                }
-            })
-
-            $('#darkMode').change(function () {
-                if (this.checked) {
-                    $('html').attr('data-bs-theme', 'dark')
-                } else {
-                    $('html').attr('data-bs-theme', 'light')
-                }
-            })
-
-            function calc() {
-                const target_av = parseInt($("#target_av").val())
-                const kadou = parseInt($("#kadou").val())
-                const noruma_total = parseFloat($("#noruma_total").val())
-                const uriage = parseFloat($("#uriage").val())
-                const kadou_remaining = parseInt($("#kadou_remaining").val())
-                const noruma_remaining = parseFloat($("#noruma_remaining").val())
-                const cb = $('#hande')
-                let result = 0
-                
-                if (cb.is(':checked')) {
-                    if (target_av && kadou && noruma_total && uriage && kadou_remaining && noruma_remaining) {
-                        result = (target_av * 0.01 - (kadou + kadou_remaining) * 0.001) * (noruma_total + noruma_remaining) - uriage
-                    } else {
-                        result = ""
-                    }
-                } else {
-                    if (target_av && noruma_total && uriage && noruma_remaining) {
-                        result = target_av * 0.01 * (noruma_total + noruma_remaining) - uriage
-                    } else {
-                        result = ""
-                    }
-                }
-                if (result < 0 || result === 0) {
-                    $('#result').val("目標達成済") 
-                } else if (result != "") {
-                    $('#result').val(result.toFixed(3))
-                } else {
-                    $('#result').val("")
-                }
-                
-            }
-        })
-    </script>
 </body>
 </html>
