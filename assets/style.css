@@ -1,0 +1,6 @@
+#nippon {
+position: absolute;
+top: 9px;
+left: 50%;
+transform: translateX(-50%);
+}
