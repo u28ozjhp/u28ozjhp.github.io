@@ -2,31 +2,22 @@ const kimigayo = new Audio('https://www.mod.go.jp/gsdf/fan/sound/download/kimiga
 kimigayo.loop = true
 
 $(document).ready(function(){
-    $("body").bind("touchstart touchmove scroll mousedown DOMMouseScroll mousewheel keyup", function(){
-        if (kimigayo.paused && !$('#hikokumin').is(':checked')) {
-            kimigayo.play()
+    $("body").on("touchstart touchmove scroll mousedown DOMMouseScroll mousewheel keyup", function() {
+        if (kimigayo.paused && !$('#hikokumin').prop('checked')) {
+            kimigayo.play();
         }
-    })
+    });
 
     $('form').keyup(calc)
 
     $('#hande').change(function () {
         calc()
-        if (this.checked) {
-            $('#kadou').prop("disabled", false)
-            $('#kadou_remaining').prop("disabled", false)
-        } else {
-            $('#kadou').prop("disabled", true)
-            $('#kadou_remaining').prop("disabled", true)
-        }
-    })
+        const isHandeChecked = this.checked
+        $('#kadou, #kadou_remaining').prop("disabled", !isHandeChecked)
+    });
 
     $('#hikokumin').change(function () {
-        if (this.checked) {
-            kimigayo.pause()
-        } else {
-            kimigayo.play()
-        }
+        this.checked ? kimigayo.pause() : kimigayo.play()
     })
 
     function calc() {
@@ -36,28 +27,22 @@ $(document).ready(function(){
         const uriage = parseFloat($("#uriage").val())
         const kadou_remaining = parseInt($("#kadou_remaining").val())
         const noruma_remaining = parseFloat($("#noruma_remaining").val())
-        const cb = $('#hande')
-        let result = 0
+        let result = ""
         
-        if (cb.is(':checked')) {
+        if ($('#hande').is(':checked')) {
             if (target_av && kadou && noruma_total && uriage && kadou_remaining && noruma_remaining) {
-                result = (target_av * 0.01 - (kadou + kadou_remaining) * 0.001) * (noruma_total + noruma_remaining) - uriage
+                result = ((target_av * 0.01 - (kadou + kadou_remaining) * 0.001) * (noruma_total + noruma_remaining) - uriage).toFixed(3)
             } else {
                 result = ""
             }
         } else {
             if (target_av && noruma_total && uriage && noruma_remaining) {
-                result = target_av * 0.01 * (noruma_total + noruma_remaining) - uriage
+                result = (target_av * 0.01 * (noruma_total + noruma_remaining) - uriage).toFixed(3)
             } else {
                 result = ""
             }
         }
-        if (result < 0 || result === 0) {
-            $('#resultField').val("目標達成済") 
-        } else if (result != "") {
-            $('#resultField').val(result.toFixed(3))
-        } else {
-            $('#resultField').val("")
-        }
+
+        $('#resultField').val(parseFloat(result) <= 0 ? "目標達成済" : result)
     }
 })
