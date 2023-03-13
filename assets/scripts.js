@@ -3,7 +3,7 @@ kimigayo.loop = true
 
 $(document).ready(function(){
     $("body").bind("touchstart touchmove scroll mousedown DOMMouseScroll mousewheel keyup", function(){
-        if (kimigayo.paused) {
+        if (kimigayo.paused && !$('#hikokumin').is(':checked')) {
             kimigayo.play()
         }
     })
@@ -21,11 +21,11 @@ $(document).ready(function(){
         }
     })
 
-    $('#darkMode').change(function () {
+    $('#hikokumin').change(function () {
         if (this.checked) {
-            $('html').attr('data-bs-theme', 'dark')
+            kimigayo.pause()
         } else {
-            $('html').attr('data-bs-theme', 'light')
+            kimigayo.play()
         }
     })
 
@@ -53,11 +53,11 @@ $(document).ready(function(){
             }
         }
         if (result < 0 || result === 0) {
-            $('#result').val("目標達成済") 
+            $('#resultField').val("目標達成済") 
         } else if (result != "") {
-            $('#result').val(result.toFixed(3))
+            $('#resultField').val(result.toFixed(3))
         } else {
-            $('#result').val("")
+            $('#resultField').val("")
         }
     }
 })
