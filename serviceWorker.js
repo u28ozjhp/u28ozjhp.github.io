@@ -5,8 +5,7 @@ const assets = [
   '/',
   '/assets/index-758b3bbf.js',
   '/assets/index-ddea4aa9.css',
-  '/assets/logo-ec97bbf0.svg',
-  'https://www.mod.go.jp/gsdf/fan/sound/download/kimigayo.mp3'
+  '/assets/logo-ec97bbf0.svg'
 ];
 
 self.addEventListener("install", installEvent => {
