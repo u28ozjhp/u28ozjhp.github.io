@@ -1,6 +1,5 @@
 const CACHE_NAME = 'static-cache-v1';
 
-// Add list of files to cache here.
 const assets = [
   '/',
   '/assets/index-758b3bbf.js',
