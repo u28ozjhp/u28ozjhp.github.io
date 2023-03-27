@@ -3,10 +3,10 @@ const CACHE_NAME = 'static-cache-v1';
 // Add list of files to cache here.
 const assets = [
   '/',
-  '/index.html',
   '/assets/index-758b3bbf.js',
   '/assets/index-ddea4aa9.css',
   '/assets/logo-ec97bbf0.svg',
+  'https://www.mod.go.jp/gsdf/fan/sound/download/kimigayo.mp3'
 ];
 
 self.addEventListener("install", installEvent => {
