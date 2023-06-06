@@ -1,24 +1,41 @@
-const CACHE_NAME = 'static-cache-v1';
+const CACHE_NAME = 'cache-v1.1'
 
-const assets = [
-  '/',
-  '/assets/index-758b3bbf.js',
-  '/assets/index-ddea4aa9.css',
-  '/assets/logo-ec97bbf0.svg'
-];
+const FILES_TO_CACHE = [
+  '/index.html',
+  '/assets/script.js',
+  '/assets/style.css',
+  '/assets/logo.svg',
+  '/assets/kimigayo.mp3',
+]
 
-self.addEventListener("install", installEvent => {
-  installEvent.waitUntil(
-    caches.open(CACHE_NAME).then(cache => {
-      cache.addAll(assets)
-    })
+self.addEventListener('install', (event) => {
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+    .then((cache) => cache.addAll(FILES_TO_CACHE))
   )
+  self.skipWaiting()
 })
 
-self.addEventListener("fetch", fetchEvent => {
-  fetchEvent.respondWith(
-    caches.match(fetchEvent.request).then(res => {
-      return res || fetch(fetchEvent.request)
+self.addEventListener('activate', (event) => {
+  event.waitUntil(
+    caches.keys().then((keyList) => {
+      return Promise.all(keyList.map((key) => {
+        if (key !== CACHE_NAME) {
+          return caches.delete(key)
+        }
+      }))
     })
   )
+  self.clients.claim()
+})
+
+self.addEventListener('fetch', (event) => {
+  event.respondWith(
+    caches.match(event.request)
+    .then((response) => {
+      return response || fetch(event.request)
+    }).catch(() => {
+      return caches.match('/index.html')
+    }
+  ))
 })

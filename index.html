@@ -1,2 +1,74 @@
-<!doctype html><html lang=en><meta charset=utf-8><meta name=theme-color content="#317EFB"><link rel=icon type=image/svg+xml href=/assets/logo-ec97bbf0.svg><meta name=viewport content="width=device-width,initial-scale=1"><title>AV計算機</title><script type=module crossorigin src=/assets/index-758b3bbf.js></script>
-<link rel=stylesheet href=/assets/index-ddea4aa9.css><link rel=manifest href=/manifest.json><link rel=apple-touch-icon href=/pwa-assets/apple-icon-180.png><div id=app></div>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <title>AV計算機</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AV計算機">
+    <script defer src="/assets/script.js"></script>
+    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="apple-touch-icon" href="pwa-assets/apple-icon-180.png">
+    <link rel="manifest" href="/manifest.json" />
+<body>
+    <div id="header">
+        <a href="https://ja.m.wikipedia.org/wiki/%E6%9D%B1%E6%A2%9D%E8%8B%B1%E6%A9%9F%E3%81%AE%E9%81%BA%E8%A8%80#%E9%80%AE%E6%8D%95%E5%89%8D%E3%81%AB%E6%9B%B8%E3%81%8B%E3%82%8C%E3%81%9F%E3%81%A8%E3%81%95%E3%82%8C%E3%82%8B%E3%82%82%E3%81%AE" class="flex-center">
+            <img src="/assets/logo.svg" height="48px" width="48px" alt="国章">
+        </a>
+    </div>
+    <div id="container">
+        <div id="calculator">
+            <div class="row border-bottom">
+                <div class="float-container">
+                    <input type="number" class="float-input" id="target_av" placeholder="F">
+                    <label class="float-label" for="target_av">目標AV(%)</label>
+                </div>
+                <div class="flex-center" style="max-height: 56px;">
+                    <input type="checkbox" id="hande" class="toggle"><label for="hande" class="toggle-label"></label>
+                    <label for="hande">ハンデ付</label>
+                </div>
+            </div>
+            <p class="text-center">売上表からそのまま入力</p>
+            <div class="float-container">
+                <input type="number" class="float-input" id="kadou" placeholder="F" disabled>
+                <label class="float-label" for="kadou">稼働時間(M/研除)</label>
+            </div>
+            <div class="row">
+                <div class="float-container">
+                    <input type="number" class="float-input" id="noruma_total" placeholder="F">
+                    <label class="float-label" for="noruma_total">基本P</label>
+                </div>
+                <div class="float-container">
+                    <input type="number" class="float-input" id="uriage" placeholder="F">
+                    <label class="float-label" for="uriage">売上</label>
+                </div>
+            </div>
+            
+            <p class="text-center">ノルマ表から合計して入力</p>
+            <div class="border-bottom">
+                <div  class="float-container">
+                    <input type="number" class="float-input" id="kadou_remaining" placeholder="F" disabled>
+                    <label class="float-label" for="kadou_remaining">今月残りの稼働時間</label>
+                </div>
+                <div class="float-container">
+                    <input type="number" class="float-input" id="noruma_remaining" placeholder="F">
+                    <label class="float-label" for="noruma_remaining">今月残りのノルマ</label>
+                </div>
+            </div>
+            <div class="float-container">
+                <input type="text" id="resultField" class="float-input" placeholder="F" readonly>
+                <label class="float-label" for="result">作る必要のある数字</label>
+            </div>
+            <div class="flex-center" style="margin-top: 1.25rem;">
+                <input type="checkbox" id="hikokumin" style="margin-right: 0.5rem;">
+                <label for="hikokumin">非国民モード</label>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js')
+        }
+    </script>
+</body>
+</html>

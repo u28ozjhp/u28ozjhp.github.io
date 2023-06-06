@@ -1,0 +1,160 @@
+:root {
+    --border-color: rgb(222, 226, 230);
+    --font-color: rgb(33, 37, 41);
+    --toggle-gray: #ced4da;
+    --toggle-blue: #0d6efd;
+    --toggle-height: 16px;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 64px;
+    background-color: #f8f9fa;
+    margin-bottom: 1.5rem;
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#calculator {
+    width: 100%;
+    max-width: 360px;
+}
+
+.border-bottom {
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 1rem;
+}
+
+.row {
+    display: flex;
+    gap: 1rem;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+p {
+    margin-bottom: 0.5rem;
+}
+
+.text-center {
+    text-align: center;
+}
+
+
+
+.float-container {
+    background-color: white;
+    position: relative;
+    height: 56px;
+    transition: background-color 0.5s;
+    margin-bottom: 1rem;
+}
+
+.float-label {
+    display: block;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 16px;
+    color: var(--font-color);
+    transform-origin: left top;
+    user-select: none;
+    cursor: text;
+    transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1),color 0.15s cubic-bezier(0.4, 0, 0.2, 1), top 0.5s;
+}
+
+.float-input::placeholder {
+    color: transparent;
+}
+
+.float-input {
+    width: 100%;
+    height: 100%;
+    color: var(--font-color);
+    box-sizing: border-box;
+    background: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    transition: border 500ms;
+    padding: 20px 16px 6px;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.float-input:focus {
+    outline: 0;
+    border-color: #86b7fe;
+    box-shadow: 0 0 0 0.25rem rgba(13,110,253,.25);
+}
+
+.float-input:focus + .float-label,
+.float-input:not(:placeholder-shown) + .float-label {
+    color: rgba(33, 37, 41, 0.65);
+    transform: translateY(-100%) scale(0.8);
+}
+
+.float-input:disabled {
+    background-color: #e9ecef;
+}
+
+.float-input:disabled + .float-label {
+    color: #6c757d;
+}
+
+
+
+.toggle {
+    display: none;
+}
+
+.toggle-label {
+    cursor: pointer;
+    width: calc(var(--toggle-height) * 2);
+    height: var(--toggle-height);
+    background: white;
+    display: block;
+    border: 1px solid var(--toggle-gray);
+    border-radius: 100px;
+    position: relative;
+    margin-right: 0.5rem;
+}
+
+.toggle-label:after {
+    content: '';
+    position: absolute;
+    top: calc(var(--toggle-height) * 0.05);
+    left: calc(var(--toggle-height) * 0.05);
+    width: calc(var(--toggle-height) * 0.9);
+    height: calc(var(--toggle-height) * 0.9);
+    background: var(--toggle-gray);
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+.toggle:checked + .toggle-label {
+    background: var(--toggle-blue);
+    border-color: var(--toggle-blue);
+}
+
+.toggle:checked + .toggle-label:after {
+    left: calc(100% - calc(var(--toggle-height) * 0.05));
+    background: white;
+    transform: translateX(-100%);
+}
