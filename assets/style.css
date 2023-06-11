@@ -57,8 +57,6 @@ p {
     text-align: center;
 }
 
-
-
 .float-container {
     background-color: white;
     position: relative;
@@ -117,8 +115,6 @@ p {
 .float-input:disabled + .float-label {
     color: #6c757d;
 }
-
-
 
 .toggle {
     display: none;

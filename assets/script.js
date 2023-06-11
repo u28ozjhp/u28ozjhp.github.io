@@ -1,16 +1,15 @@
-const kimigayo = new Audio('assets/kimigayo.mp3')
+const kimigayo = new Audio('/assets/kimigayo.mp3')
 kimigayo.loop = true
 
 document.addEventListener('DOMContentLoaded', function() {
-    
     document.body.addEventListener("touchstart", playKimigayo)
     document.body.addEventListener("mousedown", playKimigayo)
 
     document.querySelector('#calculator').addEventListener('keyup', () => calc())
 
     document.querySelector('#hande').addEventListener('change', function() {
-        document.querySelector('#kadou').disabled = !this.checked
-        document.querySelector('#kadou_remaining').disabled = !this.checked
+        document.querySelector('#kadou-total').disabled = !this.checked
+        document.querySelector('#kadou-remaining').disabled = !this.checked
         calc()
     })
 
@@ -27,24 +26,24 @@ function playKimigayo() {
 }
 
 function calc() {
-    const target_av = parseFloat(document.querySelector('#target_av').value)
-    const kadou = parseFloat(document.querySelector('#kadou').value)
-    const noruma_total = parseFloat(document.querySelector('#noruma_total').value)
+    const targetAV = parseFloat(document.querySelector('#target-av').value)
+    const norumaTotal = parseFloat(document.querySelector('#noruma-total').value)
     const uriage = parseFloat(document.querySelector('#uriage').value)
-    const kadou_remaining = parseFloat(document.querySelector('#kadou_remaining').value)
-    const noruma_remaining = parseFloat(document.querySelector('#noruma_remaining').value)
+    const norumaRemaining = parseFloat(document.querySelector('#noruma-remaining').value)
 
-    let result
     const resultField = document.querySelector('#resultField')
     resultField.value = ""
-
-    if (isNaN(target_av) || isNaN(noruma_total) || isNaN(uriage) || isNaN(noruma_remaining)) return
-
+    
+    if (isNaN(targetAV) || isNaN(norumaTotal) || isNaN(uriage) || isNaN(norumaRemaining)) return
+    
+    let result
     if (document.querySelector('#hande').checked) {
-        if (isNaN(kadou) || isNaN(kadou_remaining)) return
-        result = (target_av * 0.01 - (kadou + kadou_remaining) * 0.001) * (noruma_total + noruma_remaining) - uriage
+        const kadouTotal = parseFloat(document.querySelector('#kadou-total').value)
+        const kadouRemaining = parseFloat(document.querySelector('#kadou-remaining').value)
+        if (isNaN(kadouTotal) || isNaN(kadouRemaining)) return
+        result = (targetAV * 0.01 - (kadouTotal + kadouRemaining) * 0.001) * (norumaTotal + norumaRemaining) - uriage
     } else {
-        result = target_av * 0.01 * (noruma_total + noruma_remaining) - uriage
+        result = targetAV * 0.01 * (norumaTotal + norumaRemaining) - uriage
     }
     
     if (result < 0 || result === 0) {
