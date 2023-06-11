@@ -49,6 +49,6 @@ function calc() {
     if (result < 0 || result === 0) {
         resultField.value = document.querySelector('#hikokumin').checked ? "目標達成済" : "🎌目標達成済🎌"
     } else {
-        resultField.value = result.toFixed(3)
+        resultField.value = result.toFixed(3).replace(/\.?0+$/, '')
     }
 }
