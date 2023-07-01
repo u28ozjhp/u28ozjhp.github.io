@@ -5,6 +5,36 @@ if ('serviceWorker' in navigator) {
 const kimigayo = new Audio('/assets/kimigayo.opus')
 kimigayo.loop = true
 const playKimigayo = () => kimigayo.paused && !document.getElementById('hikokumin').checked && kimigayo.play()
+const calc = () => {
+    const targetAV = parseFloat(document.getElementById('target-av').value)
+    const norumaTotal = parseFloat(document.getElementById('noruma-total').value)
+    const uriage = parseFloat(document.getElementById('uriage').value)
+    const norumaRemaining = parseFloat(document.getElementById('noruma-remaining').value)
+
+    const resultField = document.getElementById('result')
+    resultField.value = ""
+    
+    if (isNaN(targetAV) || isNaN(norumaTotal) || isNaN(uriage) || isNaN(norumaRemaining)) return
+    
+    let result
+    if (document.getElementById('hande').checked) {
+        const kadouTotal = parseFloat(document.getElementById('kadou-total').value)
+        const kadouRemaining = parseFloat(document.getElementById('kadou-remaining').value)
+        if (isNaN(kadouTotal) || isNaN(kadouRemaining)) return
+        result = (targetAV * 0.01 - (kadouTotal + kadouRemaining) * 0.001) * (norumaTotal + norumaRemaining) - uriage
+    } else {
+        result = targetAV * 0.01 * (norumaTotal + norumaRemaining) - uriage
+    }
+    
+    if (result < 0 || result === 0) {
+        resultField.value = document.getElementById('hikokumin').checked ? "目標達成済" : "🎌目標達成済🎌"
+        // if (document.getElementById('hikokumin').checked) return
+        // const banzai = new Audio('/assets/banzai.opus')
+        // banzai.play()
+    } else {
+        resultField.value = parseFloat(result.toFixed(3))
+    }
+}
 
 document.addEventListener('DOMContentLoaded',  () => {
     const hikokuminLS = localStorage.getItem('hikokuminLS')
@@ -39,32 +69,3 @@ document.addEventListener('DOMContentLoaded',  () => {
         }
     })
 })
-
-
-function calc() {
-    const targetAV = parseFloat(document.querySelector('#target-av').value)
-    const norumaTotal = parseFloat(document.querySelector('#noruma-total').value)
-    const uriage = parseFloat(document.querySelector('#uriage').value)
-    const norumaRemaining = parseFloat(document.querySelector('#noruma-remaining').value)
-
-    const resultField = document.querySelector('#resultField')
-    resultField.value = ""
-    
-    if (isNaN(targetAV) || isNaN(norumaTotal) || isNaN(uriage) || isNaN(norumaRemaining)) return
-    
-    let result
-    if (document.querySelector('#hande').checked) {
-        const kadouTotal = parseFloat(document.querySelector('#kadou-total').value)
-        const kadouRemaining = parseFloat(document.querySelector('#kadou-remaining').value)
-        if (isNaN(kadouTotal) || isNaN(kadouRemaining)) return
-        result = (targetAV * 0.01 - (kadouTotal + kadouRemaining) * 0.001) * (norumaTotal + norumaRemaining) - uriage
-    } else {
-        result = targetAV * 0.01 * (norumaTotal + norumaRemaining) - uriage
-    }
-    
-    if (result < 0 || result === 0) {
-        resultField.value = document.querySelector('#hikokumin').checked ? "目標達成済" : "🎌目標達成済🎌"
-    } else {
-        resultField.value = parseFloat(result.toFixed(3))
-    }
-}
