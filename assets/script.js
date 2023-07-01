@@ -1,4 +1,4 @@
-const kimigayo = new Audio('/assets/kimigayo.mp3')
+const kimigayo = new Audio('/assets/kimigayo.opus')
 kimigayo.loop = true
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -15,7 +15,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
     document.querySelector('#hikokumin').addEventListener('change', function() {
         this.checked ? kimigayo.pause() : kimigayo.play()
+        document.title = this.checked ? "計算機" : "🎌日本万歳🎌"
         calc()
+    })
+
+    document.getElementById('share').addEventListener('click', () => {
+        if (navigator.share) {
+            navigator.share({
+                title: '🎌日本万歳🎌',
+                text: '日本同胞国民諸君へ',
+                url: 'https://u28ozjhp.github.io/'
+            })
+        }
     })
 })
 

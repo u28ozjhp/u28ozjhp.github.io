@@ -1,11 +1,11 @@
-const CACHE_NAME = 'cache-v1.3'
+const CACHE_NAME = 'cache-v1.4'
 
 const FILES_TO_CACHE = [
   '/index.html',
   '/assets/script.js',
   '/assets/style.css',
   '/assets/logo.svg',
-  '/assets/kimigayo.mp3',
+  '/assets/kimigayo.opus',
 ]
 
 self.addEventListener('install', (event) => {
