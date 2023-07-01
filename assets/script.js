@@ -28,9 +28,6 @@ const calc = () => {
     
     if (result < 0 || result === 0) {
         resultField.value = document.getElementById('hikokumin').checked ? "目標達成済" : "🎌目標達成済🎌"
-        // if (document.getElementById('hikokumin').checked) return
-        // const banzai = new Audio('/assets/banzai.opus')
-        // banzai.play()
     } else {
         resultField.value = parseFloat(result.toFixed(3))
     }
