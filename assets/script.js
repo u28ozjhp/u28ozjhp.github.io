@@ -1,21 +1,30 @@
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js')
+}
+
 const kimigayo = new Audio('/assets/kimigayo.opus')
 kimigayo.loop = true
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded',  () => {
+    const hikokuminLS = localStorage.getItem('hikokuminLS')
+    !hikokuminLS && localStorage.setItem('hikokuminLS', 'false')
+    document.getElementById('hikokumin').checked = hikokuminLS === 'true'
+
     document.body.addEventListener("touchstart", playKimigayo)
     document.body.addEventListener("mousedown", playKimigayo)
 
     document.querySelector('#calculator').addEventListener('keyup', () => calc())
 
-    document.querySelector('#hande').addEventListener('change', function() {
-        document.querySelector('#kadou-total').disabled = !this.checked
-        document.querySelector('#kadou-remaining').disabled = !this.checked
+    document.getElementById('hande').addEventListener('change', (e) => {
+        document.getElementById('kadou-total').disabled = !e.target.checked
+        document.getElementById('kadou-remaining').disabled = !e.target.checked
         calc()
     })
 
-    document.querySelector('#hikokumin').addEventListener('change', function() {
-        this.checked ? kimigayo.pause() : kimigayo.play()
-        document.title = this.checked ? "計算機" : "🎌日本万歳🎌"
+    document.getElementById('hikokumin').addEventListener('change', (e) => {
+        e.target.checked ? kimigayo.pause() : kimigayo.play()
+        document.title = e.target.checked ? "計算機" : "🎌日本万歳🎌"
+        localStorage.setItem('hikokuminLS', e.target.checked)
         calc()
     })
 
