@@ -4,6 +4,7 @@ if ('serviceWorker' in navigator) {
 
 const kimigayo = new Audio('/assets/kimigayo.opus')
 kimigayo.loop = true
+const playKimigayo = () => kimigayo.paused && !document.getElementById('hikokumin').checked && kimigayo.play()
 
 document.addEventListener('DOMContentLoaded',  () => {
     const hikokuminLS = localStorage.getItem('hikokuminLS')
@@ -39,11 +40,6 @@ document.addEventListener('DOMContentLoaded',  () => {
     })
 })
 
-function playKimigayo() {
-    if (kimigayo.paused && !document.querySelector('#hikokumin').checked) {
-        kimigayo.play()
-    }
-}
 
 function calc() {
     const targetAV = parseFloat(document.querySelector('#target-av').value)
