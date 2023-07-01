@@ -24,9 +24,12 @@ html, body {
     all: unset;
     cursor: pointer;
     position: absolute;
-    right: 1.5rem;
-    height: 1rem;
-    width: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    right: 0.5rem;
+    height: 3rem;
+    width: 3rem;
     color: var(--font-color);
 }
 
