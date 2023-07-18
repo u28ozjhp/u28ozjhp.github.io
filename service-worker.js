@@ -1,32 +1,32 @@
-const e = /* @__PURE__ */ location.pathname.split("/").slice(0, -1).join("/"), m = [
-  e + "/app/immutable/entry/app.ce4992ee.js",
-  e + "/app/immutable/assets/0.ca0e0025.css",
-  e + "/app/immutable/nodes/0.ba1c1c64.js",
-  e + "/app/immutable/nodes/1.d7584670.js",
-  e + "/app/immutable/assets/2.971532cb.css",
-  e + "/app/immutable/nodes/2.7f12f614.js",
-  e + "/app/immutable/assets/3.fd2e7e0b.css",
-  e + "/app/immutable/nodes/3.4ad5d2ce.js",
-  e + "/app/immutable/nodes/4.824ceecd.js",
-  e + "/app/immutable/nodes/5.90dc09f3.js",
-  e + "/app/immutable/assets/Spinner.d9b647a8.css",
-  e + "/app/immutable/chunks/Spinner.c154e812.js",
-  e + "/app/immutable/chunks/each.d490452d.js",
-  e + "/app/immutable/chunks/index.c79ec7ab.js",
-  e + "/app/immutable/chunks/index.f0a0f8d2.js",
-  e + "/app/immutable/chunks/scheduler.f620a928.js",
-  e + "/app/immutable/chunks/singletons.81e27388.js",
-  e + "/app/immutable/chunks/store.83c04e3c.js",
-  e + "/app/immutable/entry/start.fcec9852.js"
+const s = /* @__PURE__ */ location.pathname.split("/").slice(0, -1).join("/"), m = [
+  s + "/app/immutable/entry/app.49d956f8.js",
+  s + "/app/immutable/assets/0.45520334.css",
+  s + "/app/immutable/nodes/0.f7fb6c7b.js",
+  s + "/app/immutable/nodes/1.43691e62.js",
+  s + "/app/immutable/assets/2.971532cb.css",
+  s + "/app/immutable/nodes/2.c4b376f9.js",
+  s + "/app/immutable/assets/3.fd2e7e0b.css",
+  s + "/app/immutable/nodes/3.fc745d8a.js",
+  s + "/app/immutable/nodes/4.dc47b7bb.js",
+  s + "/app/immutable/nodes/5.6166a206.js",
+  s + "/app/immutable/assets/Spinner.d9b647a8.css",
+  s + "/app/immutable/chunks/Spinner.83fce099.js",
+  s + "/app/immutable/chunks/each.1a80d1c6.js",
+  s + "/app/immutable/chunks/index.bbd4559d.js",
+  s + "/app/immutable/chunks/index.c77a4116.js",
+  s + "/app/immutable/chunks/scheduler.a1dc3b87.js",
+  s + "/app/immutable/chunks/singletons.f5217869.js",
+  s + "/app/immutable/chunks/store.f1b5e2f5.js",
+  s + "/app/immutable/entry/start.00c413f2.js"
 ], l = [
-  e + "/kimigayo.mp3",
-  e + "/kimigayo.opus",
-  e + "/logo.svg",
-  e + "/manifest.json",
-  e + "/pwa-assets/apple-icon-180.png",
-  e + "/pwa-assets/manifest-icon-192.maskable.png",
-  e + "/pwa-assets/manifest-icon-512.maskable.png"
-], u = "1689675680223", i = `cache-${u}`, p = [
+  s + "/kimigayo.mp3",
+  s + "/kimigayo.opus",
+  s + "/logo.svg",
+  s + "/manifest.json",
+  s + "/pwa-assets/apple-icon-180.png",
+  s + "/pwa-assets/manifest-icon-192.maskable.png",
+  s + "/pwa-assets/manifest-icon-512.maskable.png"
+], u = "1689686667851", i = `cache-${u}`, p = [
   ...m,
   ...l
 ];
@@ -38,8 +38,8 @@ self.addEventListener("install", (a) => {
 });
 self.addEventListener("activate", (a) => {
   async function t() {
-    for (const s of await caches.keys())
-      s !== i && await caches.delete(s);
+    for (const e of await caches.keys())
+      e !== i && await caches.delete(e);
   }
   a.waitUntil(t());
 });
@@ -47,14 +47,14 @@ self.addEventListener("fetch", (a) => {
   if (a.request.method !== "GET")
     return;
   async function t() {
-    const s = new URL(a.request.url), c = await caches.open(i);
-    if (p.includes(s.pathname))
-      return c.match(s.pathname);
+    const e = new URL(a.request.url), n = await caches.open(i);
+    if (p.includes(e.pathname))
+      return n.match(e.pathname);
     try {
-      const n = await fetch(a.request);
-      return n.status === 200 && c.put(a.request, n.clone()), n;
+      const c = await fetch(a.request);
+      return c.status === 200 && n.put(a.request, c.clone()), c;
     } catch {
-      return c.match(a.request);
+      return n.match(a.request);
     }
   }
   a.respondWith(t());

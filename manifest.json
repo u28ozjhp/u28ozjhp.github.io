@@ -18,23 +18,5 @@
 			"type": "image/png",
 			"purpose": "any maskable"
 		}
-	],
-	"shortcuts": [
-		{
-			"name": "ダッシュボード",
-			"url": "/"
-		},
-		{
-			"name": "数字入力",
-			"url": "/suji"
-		},
-		{
-			"name": "シフト",
-			"url": "/shift"
-		},
-		{
-			"name": "計算機",
-			"url": "/calculator"
-		}
 	]
 }
