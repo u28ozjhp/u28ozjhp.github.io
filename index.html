@@ -1,80 +1,42 @@
 <!DOCTYPE html>
-<html lang="ja">
-<head>
-    <title>🎌日本万歳🎌</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="日本万歳">
-    <script defer src="/assets/script.js"></script>
-    <link rel="stylesheet" href="/assets/style.css">
-    <link rel="apple-touch-icon" href="pwa-assets/apple-icon-180.png">
-    <link rel="manifest" href="/manifest.json" />
-    <meta name="theme-color" content="#ffffff">
-    <link rel="icon" href="/assets/logo.svg">
-<body>
-    <div id="header">
-        <a href="https://ja.m.wikipedia.org/wiki/%E6%9D%B1%E6%A2%9D%E8%8B%B1%E6%A9%9F%E3%81%AE%E9%81%BA%E8%A8%80#%E9%80%AE%E6%8D%95%E5%89%8D%E3%81%AB%E6%9B%B8%E3%81%8B%E3%82%8C%E3%81%9F%E3%81%A8%E3%81%95%E3%82%8C%E3%82%8B%E3%82%82%E3%81%AE" class="flex-center">
-            <img src="/assets/logo.svg" height="48" width="48" alt="国章">
-        </a>
-    </div>
-    <div id="container">
-        <div id="calculator">
-            <button id="share" aria-label="Share">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                    <path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/>
-                </svg>
-            </button>
-            <div class="row border-bottom">
-                <div class="float-container">
-                    <input type="number" class="float-input" id="target-av" placeholder="F">
-                    <label class="float-label" for="target-av">目標AV(%)</label>
-                </div>
-                <div class="flex-center" style="max-height: 56px; min-width: fit-content;">
-                    <input type="checkbox" id="hande" class="toggle"><label for="hande" class="toggle-label"></label>
-                    <label for="hande">ハンデ付</label>
-                </div>
-            </div>
-            <p class="text-center">売上表からそのまま入力</p>
-            <div class="float-container">
-                <input type="number" class="float-input" id="kadou-total" placeholder="F" disabled>
-                <label class="float-label" for="kadou-total">稼働時間(M/研除)</label>
-            </div>
-            <div class="row">
-                <div class="float-container">
-                    <input type="number" class="float-input" id="noruma-total" placeholder="F">
-                    <label class="float-label" for="noruma-total">基本P</label>
-                </div>
-                <div class="float-container">
-                    <input type="number" class="float-input" id="uriage" placeholder="F">
-                    <label class="float-label" for="uriage">売上</label>
-                </div>
-            </div>
-            
-            <p class="text-center">ノルマ表から合計して入力</p>
-            <div class="border-bottom">
-                <div  class="float-container">
-                    <input type="number" class="float-input" id="kadou-remaining" placeholder="F" disabled>
-                    <label class="float-label" for="kadou-remaining">今月残りの稼働時間</label>
-                </div>
-                <div class="float-container">
-                    <input type="number" class="float-input" id="noruma-remaining" placeholder="F">
-                    <label class="float-label" for="noruma-remaining">今月残りのノルマ</label>
-                </div>
-            </div>
-            <div class="float-container">
-                <input type="text" id="result" class="float-input" placeholder="F" readonly>
-                <label class="float-label" for="result">作る必要のある数字</label>
-            </div>
-            <div class="flex-center" style="margin-top: 1.25rem;">
-                <input type="checkbox" id="hikokumin" style="margin-right: 0.5rem;">
-                <label for="hikokumin">非国民モード</label>
-            </div>
-            
-        </div>
-    </div>
-    <audio id="kimigayo">
-        <source src="/assets/kimigayo.opus" type="audio/opus">
-        <source src="/assets/kimigayo.mp3" type="audio/mp3">
-    </audio>
-</body>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/logo.svg" />
+		<meta name="viewport" content="width=device-width" />
+		
+		<link rel="modulepreload" href="/_app/immutable/entry/start.f884b44f.js">
+		<link rel="modulepreload" href="/_app/immutable/chunks/scheduler.f620a928.js">
+		<link rel="modulepreload" href="/_app/immutable/chunks/singletons.e15498fc.js">
+		<link rel="modulepreload" href="/_app/immutable/chunks/index.f0a0f8d2.js">
+		<link rel="modulepreload" href="/_app/immutable/entry/app.a1f4731f.js">
+		<link rel="modulepreload" href="/_app/immutable/chunks/index.c79ec7ab.js">
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents">
+			<script>
+				{
+					__sveltekit_h2y36e = {
+						base: "",
+						env: {}
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("/_app/immutable/entry/start.f884b44f.js"),
+						import("/_app/immutable/entry/app.a1f4731f.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element);
+					});
+
+					if ('serviceWorker' in navigator) {
+						addEventListener('load', function () {
+							navigator.serviceWorker.register('/service-worker.js');
+						});
+					}
+				}
+			</script>
+		</div>
+	</body>
 </html>
