@@ -1,47 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/logo.svg" />
-		<meta name="viewport" content="width=device-width" />
-
-		<link rel="apple-touch-icon" href="pwa-assets/apple-icon-180.png">
-		<link rel="manifest" href="/manifest.json" />
-		<meta name="theme-color" content="#ffffff">
-		
-		
-		<link rel="modulepreload" href="/app/immutable/entry/start.c3777910.js">
-		<link rel="modulepreload" href="/app/immutable/chunks/scheduler.212c71d7.js">
-		<link rel="modulepreload" href="/app/immutable/chunks/singletons.57a3967e.js">
-		<link rel="modulepreload" href="/app/immutable/chunks/index.506cce27.js">
-		<link rel="modulepreload" href="/app/immutable/entry/app.e97b9924.js">
-		<link rel="modulepreload" href="/app/immutable/chunks/index.5fdc0ad9.js">
-	</head>
-	<body data-sveltekit-preload-data="hover">
-		<div style="display: contents">
-			<script>
-				{
-					__sveltekit_1jbjbhb = {
-						base: "",
-						env: {}
-					};
-
-					const element = document.currentScript.parentElement;
-
-					Promise.all([
-						import("/app/immutable/entry/start.c3777910.js"),
-						import("/app/immutable/entry/app.e97b9924.js")
-					]).then(([kit, app]) => {
-						kit.start(app, element);
-					});
-
-					if ('serviceWorker' in navigator) {
-						addEventListener('load', function () {
-							navigator.serviceWorker.register('/service-worker.js');
-						});
-					}
-				}
-			</script>
-		</div>
-	</body>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .prompt {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50dvh;
+            flex-direction: column;
+            gap: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="prompt">
+        <div>移動しました。</div>
+        <div>以下からインストールし直してください。</div>
+        <a class="redirect" target="_blank" href="https://nippon-banzai.netlify.app" style="margin-top: 1rem;">新ドメイン</a>
+    </div>
+</body>
 </html>
