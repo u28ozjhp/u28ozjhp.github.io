@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>移動しました</title>
+    <title>Document</title>
     <style>
         .prompt {
             display: flex;
@@ -18,8 +18,17 @@
 <body>
     <div class="prompt">
         <div>移動しました。</div>
-        <div>以下からインストールし直してください。</div>
-        <a class="redirect" target="_blank" href="https://nippon-banzai.netlify.app" style="margin-top: 1rem;">新ドメイン</a>
+        <div>インストールし直してください。</div>
+        <input type="text" style="width: 15rem; text-align: center;" value="https://nippon-banzai.netlify.app" readonly>
+        <button id="copy-btn">クリップボードにコピー</button>
     </div>
 </body>
+<script>
+    const button = document.querySelector('#copy-btn')
+    button.addEventListener('click', () => {
+        const newURL = 'https://nippon-banzai.netlify.app'
+        navigator.clipboard.writeText(newURL)
+        alert('URL copied to clipboard!')
+    })
+</script>
 </html>
